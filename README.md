@@ -1,104 +1,85 @@
-# instagram-api
-
-REST API with all basic features real Instagram has.
+# Backend Instagram App
 
 ## Features:
 
--   registering and logging to user account
--   posting photos
--   commenting and liking photos
--   following system
--   all CRUD operations on posts, comments, follows and likes with relevant permissions
+- Authentication: login, register, update password, get profile
+- User: get all users, get user, update profile, follow user
+- Post: get all posts, get post by id, create post, update post, delete post, like post, unlike post
+- Comment: get comments for post, create comment, delete comment, like comment, unlike comment
 
-## Technology Stack:
+## Using Technology:
 
--   Node js
--   Express Js
--   MongoDB
--   JWT
+- Node js
+- Express Js
+- MongoDB
+- JWT
 
-## Default urls:
+## API:
 
--   Login User : <br/>
-    localhost:5000/api/v1/auth/login
--   Register User : <br/>
-    localhost:5000/api/v1/user/register
--   Get Logged in User : <br/>
-    localhost:5000/api/v1/auth/me/
--   Update User Details : <br/>
-    localhost:5000/api/v1/auth/updatedetails
--   Update Password : <br/>
-    localhost:5000/api/v1/auth/updatepassword
--   Forgot Password : <br/>
-    localhost:5000/api/v1/auth/forgotpassword
--   Reset Password : <br/>
-    localhost:5000/api/v1/auth/resetpassword/:resetToken
--   Follow User : <br/>
-    localhost:5000/api/v1/auth/follow/:userId
--   Unfollow User : <br/>
-    localhost:5000/api/v1/auth/unfollow/:userId
+- Login : <br/>
+  localhost:5000/api/v1/auth/login
+- Register : <br/>
+  localhost:5000/api/v1/auth/register
+- Update password : <br/>
+  localhost:5000/api/v1/auth/update-password
+- Get profile : <br/>
+  localhost:5000/api/v1/auth/profile
 
--   Get All Posts : <br/>
-    localhost:5000/api/v1/posts
--   Get Single Post : <br/>
-    localhost:5000/api/v1/posts/:postId
--   Create Post : <br/>
-    localhost:5000/api/v1/posts
--   Update Post : <br/>
-    localhost:5000/api/v1/posts/:postId
--   Delete Post : <br/>
-    localhost:5000/api/v1/posts/:postId
--   Like Post : <br/>
-    localhost:5000/api/v1/posts/:postId/likes
--   Unlike Post : <br/>
-    localhost:5000/api/v1/posts/:postId/unlike
+- Get all users :<br/>
+  localhost:5000/api/v1/users
+- Get user :<br/>
+  localhost:5000/api/v1/users/:id
+- Update profile :<br/>
+  localhost:5000/api/v1/users/profile
+- Follow user :<br/>
+  localhost:5000/api/v1/users/:id/follow
 
--   Get All Comments : <br/>
-    localhost:5000/api/v1/comments
--   Add Comment : <br/>
-    localhost:5000/api/v1/posts/:postId/comments
--   Update Comment : <br/>
-    localhost:5000/api/v1/comments/:commentId
--   Delete Post : <br/>
-    localhost:5000/api/v1/comments/:commentId
+- Get all posts : <br/>
+  localhost:5000/api/v1/posts
+- Get post by id : <br/>
+  localhost:5000/api/v1/posts/:id
+- Create post : <br/>
+  localhost:5000/api/v1/posts
+- Update post : <br/>
+  localhost:5000/api/v1/posts/:id
+- Delete post : <br/>
+  localhost:5000/api/v1/posts/:id
+- Like post : <br/>
+  localhost:5000/api/v1/posts/:id/like
+- Unlike post : <br/>
+  localhost:5000/api/v1/posts/:id/unlike
 
--   Get All Users :<br/>
-    localhost:5000/api/v1/users
--   Get Single User :<br/>
-    localhost:5000/api/v1/users/:userId
--   Search User :<br/>
-    localhost:5000/api/v1/users?search=john
-
-## Usage
-
-"/.env" update the values/settings to your own
+- Get comments for post : <br/>
+  localhost:5000/api/v1/comments
+- Create comment : <br/>
+  localhost:5000/api/v1/comments
+- Delete comment : <br/>
+  localhost:5000/api/v1/comments/:id
+- Like comment : <br/>
+  localhost:5000/api/v1/comments/:id/like
+- Unlike comment :<br/>
+  localhost:5000/api/v1/comments/:id/unlike
 
 ## Install Dependencies
 
 ```
 npm install
+
 ```
 
 ## Run App
 
 ```
-# Run in dev mode
 npm run server
 
 ```
 
-## Database Seeder
-
-To seed the database with users, posts, and comments with data from the "\data" folder, run
+## Database
 
 ```
-# Destroy all data
-npù run deleteData
+# Delete all data
+npm run deleteData
 
-# Import all data
+# Insert all data
 npm run insertData
 ```
-
--   Version: 1.0.0
--   License: MIT
--   Author: Said Mounaim
