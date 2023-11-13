@@ -8,7 +8,7 @@ import { notFound, errorHandler } from "./middleware/ErrorMiddleware.js";
 // ROUTES
 import PostRoutes from "./routes/PostRoutes.js";
 import AuthRoutes from "./routes/AuthRoutes.js";
-import CommentRoutes from "./routes/CommentRoutes.js";
+// import CommentRoutes from "./routes/CommentRoutes.js";
 import UserRoutes from "./routes/UserRoutes.js";
 
 const app = express();
@@ -25,7 +25,7 @@ app.use(cors());
 // Route
 app.use("/api/v1/posts", PostRoutes);
 app.use("/api/v1/auth", AuthRoutes);
-app.use("/api/v1/comments", CommentRoutes);
+// app.use("/api/v1/comments", CommentRoutes);
 app.use("/api/v1/users", UserRoutes);
 
 app.use(notFound);

@@ -22,6 +22,12 @@ const PostSchema = mongoose.Schema(
         ref: "User",
       },
     ],
+    comments: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Comment",
+      },
+    ],
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "User",
@@ -35,6 +41,7 @@ const PostSchema = mongoose.Schema(
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    versionKey: false,
   }
 );
 

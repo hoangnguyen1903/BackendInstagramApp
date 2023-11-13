@@ -2,8 +2,8 @@
 
 ## Features:
 
-- Authentication: login, register, update password, get profile
-- User: get all users, get user, update profile, follow user
+- Authentication: login, register
+- User: get all users, get user, update profile, update password, follow user, unfollow user
 - Post: get all posts, get post by id, create post, update post, delete post, like post, unlike post
 - Comment: get comments for post, create comment, delete comment, like comment, unlike comment
 
@@ -20,10 +20,6 @@
   localhost:5000/api/v1/auth/login
 - Register : <br/>
   localhost:5000/api/v1/auth/register
-- Update password : <br/>
-  localhost:5000/api/v1/auth/update-password
-- Get profile : <br/>
-  localhost:5000/api/v1/auth/profile
 
 - Get all users :<br/>
   localhost:5000/api/v1/users
@@ -31,8 +27,12 @@
   localhost:5000/api/v1/users/:id
 - Update profile :<br/>
   localhost:5000/api/v1/users/profile
+- Update password : <br/>
+  localhost:5000/api/v1/users/update-password
 - Follow user :<br/>
   localhost:5000/api/v1/users/:id/follow
+- Unfollow user :<br/>
+  localhost:5000/api/v1/users/:id/unfollow
 
 - Get all posts : <br/>
   localhost:5000/api/v1/posts
@@ -64,14 +64,12 @@
 
 ```
 npm install
-
 ```
 
 ## Run App
 
 ```
 npm run server
-
 ```
 
 ## Database

@@ -8,18 +8,20 @@ import {
   likePost,
   unlikePost,
 } from "../controllers/PostController.js";
+
 import {
   ProtectMiddleware,
   AuthMiddleware,
 } from "../middleware/ProtectMiddleware.js";
-import CommentRoutes from "./CommentRoutes.js";
+
+import CommentRouter from "./CommentRoutes.js";
 
 const router = express.Router();
 
-// Include CommentRoutes as a sub-route
-router.use("/:postId/comments", CommentRoutes);
+// Comment
+router.use("/:postId/comments", CommentRouter);
 
-// Routes for Posts
+// Post
 router.route("/").get(getAllPosts).post(ProtectMiddleware, createPost);
 
 router
@@ -28,7 +30,6 @@ router
   .put(ProtectMiddleware, AuthMiddleware("user", "admin"), updatePost)
   .delete(ProtectMiddleware, AuthMiddleware("user", "admin"), deletePost);
 
-// Routes for Liking and Unliking Posts
 router.route("/:id/like").put(ProtectMiddleware, likePost);
 
 router.route("/:id/unlike").put(ProtectMiddleware, unlikePost);

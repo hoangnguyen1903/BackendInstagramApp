@@ -1,23 +1,26 @@
 import express from "express";
 import {
   getAllUsers,
-  getUser,
+  getUserById,
   updateProfile,
+  updatePassword,
   followUser,
+  unfollowUser,
 } from "../controllers/UserController.js";
+import { ProtectMiddleware } from "../middleware/ProtectMiddleware.js";
 
 const router = express.Router();
 
-// Route to get all users
 router.route("/").get(getAllUsers);
 
-// Route to get a specific user by ID
-router.route("/:id").get(getUser);
+router.route("/:id").get(getUserById);
 
-// Route to update the user's profile
-router.route("/profile").put(updateProfile);
+router.route("/profile").put(ProtectMiddleware, updateProfile);
 
-// Route to follow a user by ID
-router.route("/:id/follow").put(followUser);
+router.route("/update-password").put(ProtectMiddleware, updatePassword);
+
+router.route("/:id/follow").put(ProtectMiddleware, followUser);
+
+router.route("/:id/unfollow").put(ProtectMiddleware, unfollowUser);
 
 export default router;

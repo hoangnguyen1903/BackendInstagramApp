@@ -27,17 +27,12 @@ const UserSchema = mongoose.Schema(
     password: {
       type: String,
       required: [true, "Please add a password"],
-      select: false,
     },
     role: {
       type: String,
       default: "user",
       enum: ["user", "admin"],
     },
-
-    resetPasswordToken: String,
-    resetPasswordExpire: Date,
-
     followers: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
     following: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
     posts: [{ type: mongoose.Schema.ObjectId, ref: "Post" }],
@@ -49,6 +44,7 @@ const UserSchema = mongoose.Schema(
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    versionKey: false,
   }
 );
 
