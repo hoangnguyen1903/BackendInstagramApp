@@ -26,6 +26,32 @@ export const getAllPosts = asyncHandler(async (req, res) => {
   res.status(200).json({ status: "success", data: posts });
 });
 
+export const getAllPostsForUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const posts = await Post.find({ user: id })
+    .populate({
+      path: "user",
+      model: "User",
+      select: "userName avatarUrl",
+    })
+    .populate({
+      path: "likes",
+      model: "User",
+      select: "_id",
+    })
+    .populate({
+      path: "comments",
+      populate: {
+        path: "user",
+        model: "User",
+        select: "userName avatarUrl",
+      },
+    });
+
+  res.status(200).json({ status: "success", data: posts });
+});
+
 export const getPostById = asyncHandler(async (req, res) => {
   const postId = req.params.id;
   const post = await Post.findById(postId)

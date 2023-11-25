@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getAllPosts,
+  getAllPostsForUser,
   getPostById,
   createPost,
   updatePost,
@@ -23,6 +24,8 @@ router.use("/:postId/comments", CommentRouter);
 
 // Post
 router.route("/").get(getAllPosts).post(ProtectMiddleware, createPost);
+
+router.route("/users/:id").get(getAllPostsForUser);
 
 router
   .route("/:id")

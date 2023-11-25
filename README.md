@@ -49,16 +49,14 @@
 - Unlike post : <br/>
   localhost:5000/api/v1/posts/:id/unlike
 
-- Get comments for post : <br/>
-  localhost:5000/api/v1/comments
 - Create comment : <br/>
-  localhost:5000/api/v1/comments
+  localhost:5000/api/v1/posts/:postId/comments
 - Delete comment : <br/>
-  localhost:5000/api/v1/comments/:id
+  localhost:5000/api/v1/posts/:postId/comments/:id
 - Like comment : <br/>
-  localhost:5000/api/v1/comments/:id/like
+  localhost:5000/api/v1/posts/:postId/comments/:id/like
 - Unlike comment :<br/>
-  localhost:5000/api/v1/comments/:id/unlike
+  localhost:5000/api/v1/posts/:postId/comments/:id/unlike
 
 ## Install Dependencies
 

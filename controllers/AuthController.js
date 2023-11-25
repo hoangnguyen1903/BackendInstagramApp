@@ -29,12 +29,12 @@ export const register = asyncHandler(async (req, res) => {
     .populate({
       path: "following",
       model: "User",
-      select: "userName avatarUrl",
+      select: "userName fullName avatarUrl",
     })
     .populate({
       path: "followers",
       model: "User",
-      select: "userName avatarUrl",
+      select: "userName fullName avatarUrl",
     })
     .populate({
       path: "posts",
@@ -70,12 +70,12 @@ export const login = asyncHandler(async (req, res) => {
     .populate({
       path: "following",
       model: "User",
-      select: "userName avatarUrl",
+      select: "userName fullName avatarUrl",
     })
     .populate({
       path: "followers",
       model: "User",
-      select: "userName avatarUrl",
+      select: "userName fullName avatarUrl",
     })
     .populate({
       path: "posts",

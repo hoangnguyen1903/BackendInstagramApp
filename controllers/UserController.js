@@ -11,7 +11,9 @@ export const getAllUsers = asyncHandler(async (req, res) => {
 export const getUserById = asyncHandler(async (req, res) => {
   const userId = req.params.id;
 
-  const user = await User.findById(userId).select("-password");
+  const user = await User.findById(userId)
+    .select("-password")
+    .populate("posts", "imageUrl");
 
   if (!user) {
     res.status(404);
@@ -22,25 +24,21 @@ export const getUserById = asyncHandler(async (req, res) => {
 });
 
 export const followUser = asyncHandler(async (req, res) => {
-  const loggedInUserId = req.user._id; // Assuming you have authentication middleware
+  const loggedInUserId = req.user._id;
 
-  // Find the user you want to follow by their ID
   const userToFollow = await User.findById(req.params.id);
 
   if (!userToFollow) {
     res.status(404);
     throw new Error("User not found");
   } else {
-    // Check if the logged-in user is already following the target user
     if (userToFollow.followers.includes(loggedInUserId)) {
       res.status(400);
       throw new Error("You are already following this user");
     } else {
-      // Add the logged-in user's ID to the target user's followers array
       userToFollow.followers.push(loggedInUserId);
       await userToFollow.save();
 
-      // Update the logged-in user's following list
       let loggedInUser = await User.findById(loggedInUserId);
       loggedInUser.following.push(userToFollow._id);
       await loggedInUser.save();
@@ -67,37 +65,30 @@ export const followUser = asyncHandler(async (req, res) => {
 });
 
 export const unfollowUser = asyncHandler(async (req, res) => {
-  // Get the user ID of the user to unfollow from the request parameters
   const userToUnfollowId = req.params.id;
 
-  // Get the current user's ID from the authenticated request
-  const currentUserId = req.user._id; // Assuming you have user data in req.user
+  const currentUserId = req.user._id;
 
-  // Check if the user to unfollow exists
   const userToUnfollow = await User.findById(userToUnfollowId);
   if (!userToUnfollow) {
     res.status(404);
     throw new Error("User to unfollow not found");
   }
 
-  // Check if the current user is already following the user to unfollow
   if (!userToUnfollow.followers.includes(currentUserId)) {
     res.status(400);
     throw new Error("You are not following this user");
   }
 
-  // Remove the current user from the followers of the user to unfollow
   userToUnfollow.followers = userToUnfollow.followers.filter(
     (followerId) => followerId.toString() !== currentUserId.toString()
   );
 
-  // Remove the user to unfollow from the following list of the current user
   let currentUser = await User.findById(currentUserId);
   currentUser.following = currentUser.following.filter(
     (followingId) => followingId.toString() !== userToUnfollowId.toString()
   );
 
-  // Save both users to update their follower and following lists
   await userToUnfollow.save();
   await currentUser.save();
 
